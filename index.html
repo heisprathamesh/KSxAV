@@ -1,0 +1,1233 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Grand Dialogue — Kashmir Shaivism & Advaita Vedanta</title>
+<link href="https://fonts.googleapis.com/css2?family=Yatra+One&family=Tiro+Devanagari+Sanskrit:ital@0;1&family=EB+Garamond:ital,wght@0,400;0,600;1,400&family=Cinzel+Decorative:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --saffron: #E8651A;
+    --deep-saffron: #C4430A;
+    --gold: #D4A017;
+    --gold-light: #F0C93A;
+    --crimson: #8B0000;
+    --ivory: #F5EDD8;
+    --ivory-dark: #E8D9B5;
+    --night: #0D0A06;
+    --deep: #1A0F05;
+    --slate: #2C1810;
+    --text-warm: #3D1F0A;
+    --turquoise: #1A7A8A;
+    --lotus: #C2185B;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--night);
+    color: var(--ivory);
+    font-family: 'EB Garamond', serif;
+    overflow-x: hidden;
+    cursor: default;
+  }
+
+  /* Mandala Background */
+  body::before {
+    content: '';
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 120vmax;
+    height: 120vmax;
+    background: 
+      radial-gradient(circle at 50% 50%, transparent 20%, rgba(212,160,23,0.03) 21%, transparent 22%),
+      radial-gradient(circle at 50% 50%, transparent 30%, rgba(212,160,23,0.03) 31%, transparent 32%),
+      radial-gradient(circle at 50% 50%, transparent 40%, rgba(232,101,26,0.03) 41%, transparent 42%),
+      radial-gradient(circle at 50% 50%, transparent 50%, rgba(232,101,26,0.02) 51%, transparent 52%);
+    animation: rotateMandala 120s linear infinite;
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  @keyframes rotateMandala {
+    to { transform: translate(-50%, -50%) rotate(360deg); }
+  }
+
+  /* Particle canvas */
+  #particles {
+    position: fixed;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  /* HERO */
+  .hero {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
+    padding: 4rem 2rem;
+    text-align: center;
+  }
+
+  .hero-bg {
+    position: absolute;
+    inset: 0;
+    background: 
+      radial-gradient(ellipse 80% 60% at 50% 100%, rgba(139,0,0,0.4) 0%, transparent 70%),
+      radial-gradient(ellipse 60% 40% at 50% 0%, rgba(212,160,23,0.15) 0%, transparent 60%),
+      linear-gradient(180deg, #0D0A06 0%, #1A0A02 50%, #0D0206 100%);
+  }
+
+  .om-symbol {
+    font-size: clamp(5rem, 15vw, 12rem);
+    color: var(--gold);
+    opacity: 0.15;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-family: 'Tiro Devanagari Sanskrit', serif;
+    animation: breathe 6s ease-in-out infinite;
+    pointer-events: none;
+    text-shadow: 0 0 80px rgba(212,160,23,0.5);
+  }
+
+  @keyframes breathe {
+    0%, 100% { transform: translate(-50%, -50%) scale(1); opacity: 0.12; }
+    50% { transform: translate(-50%, -50%) scale(1.05); opacity: 0.2; }
+  }
+
+  .hero-content {
+    position: relative;
+    z-index: 2;
+  }
+
+  .sanskrit-top {
+    font-family: 'Tiro Devanagari Sanskrit', serif;
+    font-size: clamp(1.2rem, 3vw, 2rem);
+    color: var(--gold);
+    letter-spacing: 0.3em;
+    margin-bottom: 1.5rem;
+    opacity: 0;
+    animation: fadeUp 1s ease forwards 0.3s;
+  }
+
+  .hero-title {
+    font-family: 'Cinzel Decorative', serif;
+    font-size: clamp(2rem, 6vw, 5rem);
+    line-height: 1.1;
+    color: var(--ivory);
+    text-shadow: 0 0 60px rgba(212,160,23,0.3);
+    opacity: 0;
+    animation: fadeUp 1s ease forwards 0.6s;
+    margin-bottom: 0.5rem;
+  }
+
+  .hero-title span {
+    color: var(--gold);
+    display: block;
+  }
+
+  .hero-subtitle {
+    font-family: 'EB Garamond', serif;
+    font-style: italic;
+    font-size: clamp(1rem, 2.5vw, 1.5rem);
+    color: var(--ivory-dark);
+    opacity: 0;
+    animation: fadeUp 1s ease forwards 0.9s;
+    margin-bottom: 3rem;
+    letter-spacing: 0.05em;
+  }
+
+  .divider-ornament {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    justify-content: center;
+    opacity: 0;
+    animation: fadeUp 1s ease forwards 1.1s;
+    margin-bottom: 3rem;
+  }
+
+  .divider-ornament::before,
+  .divider-ornament::after {
+    content: '';
+    height: 1px;
+    width: 8rem;
+    background: linear-gradient(90deg, transparent, var(--gold), transparent);
+  }
+
+  .divider-dot {
+    width: 8px; height: 8px;
+    background: var(--gold);
+    border-radius: 50%;
+    box-shadow: 0 0 12px var(--gold);
+  }
+
+  .scroll-hint {
+    position: absolute;
+    bottom: 2rem;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+    opacity: 0;
+    animation: fadeUp 1s ease forwards 2s;
+    font-size: 0.75rem;
+    letter-spacing: 0.3em;
+    color: var(--gold);
+    text-transform: uppercase;
+  }
+
+  .scroll-arrow {
+    width: 20px; height: 20px;
+    border-right: 1px solid var(--gold);
+    border-bottom: 1px solid var(--gold);
+    transform: rotate(45deg);
+    animation: bounce 2s ease infinite;
+  }
+
+  @keyframes bounce {
+    0%, 100% { transform: rotate(45deg) translateY(0); }
+    50% { transform: rotate(45deg) translateY(6px); }
+  }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(30px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  /* NAV */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    padding: 1rem 3rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: linear-gradient(180deg, rgba(13,10,6,0.9) 0%, transparent 100%);
+    backdrop-filter: blur(4px);
+  }
+
+  .nav-logo {
+    font-family: 'Yatra One', serif;
+    font-size: 1.3rem;
+    color: var(--gold);
+    letter-spacing: 0.1em;
+  }
+
+  .nav-links {
+    display: flex;
+    gap: 2.5rem;
+    list-style: none;
+  }
+
+  .nav-links a {
+    color: var(--ivory-dark);
+    text-decoration: none;
+    font-size: 0.85rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    transition: color 0.3s;
+    position: relative;
+  }
+
+  .nav-links a::after {
+    content: '';
+    position: absolute;
+    bottom: -3px; left: 0;
+    width: 0; height: 1px;
+    background: var(--gold);
+    transition: width 0.3s;
+  }
+
+  .nav-links a:hover { color: var(--gold); }
+  .nav-links a:hover::after { width: 100%; }
+
+  /* SECTIONS */
+  section {
+    position: relative;
+    z-index: 1;
+  }
+
+  .section-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 6rem 2rem;
+  }
+
+  .section-label {
+    font-size: 0.7rem;
+    letter-spacing: 0.4em;
+    text-transform: uppercase;
+    color: var(--saffron);
+    margin-bottom: 1rem;
+    font-family: 'EB Garamond', serif;
+  }
+
+  .section-title {
+    font-family: 'Cinzel Decorative', serif;
+    font-size: clamp(1.5rem, 4vw, 3rem);
+    color: var(--ivory);
+    line-height: 1.2;
+    margin-bottom: 2rem;
+  }
+
+  .section-title em {
+    font-style: normal;
+    color: var(--gold);
+  }
+
+  /* INTRO SECTION */
+  .intro-section {
+    background: linear-gradient(180deg, var(--night) 0%, var(--deep) 100%);
+  }
+
+  .intro-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 5rem;
+    align-items: center;
+  }
+
+  .intro-text p {
+    font-size: 1.15rem;
+    line-height: 1.9;
+    color: var(--ivory-dark);
+    margin-bottom: 1.5rem;
+  }
+
+  .quote-block {
+    border-left: 3px solid var(--gold);
+    padding: 1.5rem 2rem;
+    background: rgba(212,160,23,0.05);
+    margin: 2rem 0;
+    border-radius: 0 8px 8px 0;
+  }
+
+  .quote-block p {
+    font-style: italic;
+    font-size: 1.2rem;
+    color: var(--ivory);
+    line-height: 1.7;
+  }
+
+  .quote-block cite {
+    display: block;
+    margin-top: 1rem;
+    font-size: 0.85rem;
+    color: var(--gold);
+    letter-spacing: 0.1em;
+    font-style: normal;
+  }
+
+  .lotus-diagram {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .lotus-ring {
+    position: absolute;
+    border-radius: 50%;
+    border: 1px solid rgba(212,160,23,0.2);
+  }
+
+  .lotus-ring:nth-child(1) { width: 90%; height: 90%; border-color: rgba(212,160,23,0.1); }
+  .lotus-ring:nth-child(2) { width: 70%; height: 70%; border-color: rgba(232,101,26,0.2); animation: spin 40s linear infinite; }
+  .lotus-ring:nth-child(3) { width: 50%; height: 50%; border-color: rgba(212,160,23,0.3); animation: spin 25s linear infinite reverse; }
+  .lotus-ring:nth-child(4) { width: 30%; height: 30%; background: radial-gradient(circle, rgba(212,160,23,0.2), rgba(139,0,0,0.3)); border: 1px solid var(--gold); }
+
+  @keyframes spin {
+    to { transform: rotate(360deg); }
+  }
+
+  .lotus-center {
+    position: relative;
+    z-index: 2;
+    font-family: 'Tiro Devanagari Sanskrit', serif;
+    font-size: 4rem;
+    color: var(--gold);
+    text-shadow: 0 0 30px rgba(212,160,23,0.6);
+  }
+
+  /* DUAL SCHOOLS SECTION */
+  .schools-section {
+    background: linear-gradient(180deg, var(--deep) 0%, #12060A 100%);
+  }
+
+  .schools-grid {
+    display: grid;
+    grid-template-columns: 1fr 60px 1fr;
+    gap: 0;
+    align-items: start;
+    margin-top: 4rem;
+  }
+
+  .vs-divider {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 6rem;
+    gap: 0.5rem;
+  }
+
+  .vs-line {
+    width: 1px;
+    flex: 1;
+    background: linear-gradient(180deg, transparent, var(--gold), transparent);
+    min-height: 200px;
+  }
+
+  .vs-text {
+    font-family: 'Cinzel Decorative', serif;
+    font-size: 0.8rem;
+    color: var(--gold);
+    writing-mode: vertical-rl;
+    letter-spacing: 0.3em;
+  }
+
+  .school-card {
+    padding: 3rem;
+    background: rgba(255,255,255,0.02);
+    border: 1px solid rgba(212,160,23,0.1);
+    position: relative;
+    overflow: hidden;
+    transition: transform 0.4s, border-color 0.4s;
+  }
+
+  .school-card:hover {
+    transform: translateY(-4px);
+    border-color: rgba(212,160,23,0.3);
+  }
+
+  .school-card.shaivism {
+    border-radius: 12px 0 0 12px;
+    background: linear-gradient(135deg, rgba(26,122,138,0.08) 0%, rgba(13,10,6,0) 60%);
+    border-right: none;
+  }
+
+  .school-card.vedanta {
+    border-radius: 0 12px 12px 0;
+    background: linear-gradient(225deg, rgba(194,24,91,0.08) 0%, rgba(13,10,6,0) 60%);
+    border-left: none;
+  }
+
+  .school-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 3px;
+  }
+
+  .school-card.shaivism::before {
+    background: linear-gradient(90deg, var(--turquoise), transparent);
+  }
+
+  .school-card.vedanta::before {
+    background: linear-gradient(270deg, var(--lotus), transparent);
+  }
+
+  .school-symbol {
+    font-family: 'Tiro Devanagari Sanskrit', serif;
+    font-size: 3rem;
+    margin-bottom: 1.5rem;
+    display: block;
+  }
+
+  .school-card.shaivism .school-symbol { color: var(--turquoise); }
+  .school-card.vedanta .school-symbol { color: var(--lotus); }
+
+  .school-name {
+    font-family: 'Cinzel Decorative', serif;
+    font-size: 1.4rem;
+    color: var(--ivory);
+    margin-bottom: 0.5rem;
+  }
+
+  .school-subtitle {
+    font-size: 0.85rem;
+    color: var(--saffron);
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    margin-bottom: 2rem;
+  }
+
+  .school-text {
+    font-size: 1rem;
+    line-height: 1.85;
+    color: var(--ivory-dark);
+    margin-bottom: 1.5rem;
+  }
+
+  .tenets-list {
+    list-style: none;
+    margin-top: 2rem;
+  }
+
+  .tenets-list li {
+    padding: 0.8rem 0;
+    border-bottom: 1px solid rgba(212,160,23,0.08);
+    font-size: 0.95rem;
+    color: var(--ivory-dark);
+    display: flex;
+    gap: 1rem;
+    align-items: flex-start;
+  }
+
+  .tenet-marker {
+    color: var(--gold);
+    font-size: 1.2rem;
+    flex-shrink: 0;
+    margin-top: -2px;
+  }
+
+  /* CONFLICT SECTION */
+  .conflict-section {
+    background: linear-gradient(180deg, #12060A 0%, var(--night) 100%);
+  }
+
+  .conflict-intro {
+    max-width: 800px;
+    margin: 0 auto 5rem;
+    text-align: center;
+    font-size: 1.15rem;
+    line-height: 1.9;
+    color: var(--ivory-dark);
+  }
+
+  .conflicts-list {
+    display: flex;
+    flex-direction: column;
+    gap: 3rem;
+  }
+
+  .conflict-item {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0;
+    border: 1px solid rgba(212,160,23,0.12);
+    border-radius: 12px;
+    overflow: hidden;
+    transition: border-color 0.4s;
+  }
+
+  .conflict-item:hover {
+    border-color: rgba(212,160,23,0.3);
+  }
+
+  .conflict-topic {
+    grid-column: 1 / -1;
+    padding: 1.5rem 2rem;
+    background: rgba(212,160,23,0.06);
+    border-bottom: 1px solid rgba(212,160,23,0.12);
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+  }
+
+  .conflict-number {
+    font-family: 'Cinzel Decorative', serif;
+    font-size: 1.5rem;
+    color: var(--gold);
+    opacity: 0.5;
+  }
+
+  .conflict-topic-title {
+    font-family: 'Cinzel Decorative', serif;
+    font-size: 1.1rem;
+    color: var(--ivory);
+  }
+
+  .conflict-side {
+    padding: 2rem;
+  }
+
+  .conflict-side.left {
+    background: rgba(26,122,138,0.04);
+    border-right: 1px solid rgba(212,160,23,0.08);
+  }
+
+  .conflict-side.right {
+    background: rgba(194,24,91,0.04);
+  }
+
+  .conflict-side-label {
+    font-size: 0.7rem;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    margin-bottom: 1rem;
+    font-weight: 600;
+  }
+
+  .conflict-side.left .conflict-side-label { color: var(--turquoise); }
+  .conflict-side.right .conflict-side-label { color: var(--lotus); }
+
+  .conflict-side p {
+    font-size: 0.98rem;
+    line-height: 1.85;
+    color: var(--ivory-dark);
+  }
+
+  /* KEY FIGURES */
+  .figures-section {
+    background: var(--night);
+  }
+
+  .figures-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 2rem;
+    margin-top: 3rem;
+  }
+
+  .figure-card {
+    background: rgba(255,255,255,0.02);
+    border: 1px solid rgba(212,160,23,0.12);
+    border-radius: 12px;
+    padding: 2.5rem;
+    position: relative;
+    overflow: hidden;
+    transition: transform 0.4s, border-color 0.4s;
+  }
+
+  .figure-card:hover {
+    transform: translateY(-6px);
+    border-color: rgba(212,160,23,0.4);
+  }
+
+  .figure-card::after {
+    content: '';
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    height: 3px;
+    background: linear-gradient(90deg, var(--gold), var(--saffron));
+    transform: scaleX(0);
+    transition: transform 0.4s;
+    transform-origin: left;
+  }
+
+  .figure-card:hover::after { transform: scaleX(1); }
+
+  .figure-era {
+    font-size: 0.7rem;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--saffron);
+    margin-bottom: 1rem;
+  }
+
+  .figure-name {
+    font-family: 'Cinzel Decorative', serif;
+    font-size: 1.1rem;
+    color: var(--ivory);
+    margin-bottom: 0.3rem;
+  }
+
+  .figure-tradition {
+    font-size: 0.8rem;
+    color: var(--gold);
+    letter-spacing: 0.1em;
+    margin-bottom: 1.5rem;
+  }
+
+  .figure-desc {
+    font-size: 0.95rem;
+    line-height: 1.8;
+    color: var(--ivory-dark);
+  }
+
+  /* TEXTS SECTION */
+  .texts-section {
+    background: linear-gradient(180deg, var(--night) 0%, var(--deep) 100%);
+  }
+
+  .texts-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 1.5rem;
+    margin-top: 3rem;
+  }
+
+  .text-card {
+    border: 1px solid rgba(212,160,23,0.15);
+    border-radius: 8px;
+    padding: 2rem;
+    background: rgba(212,160,23,0.03);
+    transition: all 0.4s;
+    position: relative;
+  }
+
+  .text-card:hover {
+    background: rgba(212,160,23,0.07);
+    border-color: rgba(212,160,23,0.4);
+    transform: translateY(-3px);
+  }
+
+  .text-script {
+    font-family: 'Tiro Devanagari Sanskrit', serif;
+    font-size: 1.8rem;
+    color: var(--gold);
+    opacity: 0.6;
+    margin-bottom: 1rem;
+  }
+
+  .text-name {
+    font-family: 'Cinzel Decorative', serif;
+    font-size: 1rem;
+    color: var(--ivory);
+    margin-bottom: 0.5rem;
+  }
+
+  .text-tradition {
+    font-size: 0.7rem;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--saffron);
+    margin-bottom: 1rem;
+  }
+
+  .text-desc {
+    font-size: 0.9rem;
+    line-height: 1.75;
+    color: var(--ivory-dark);
+  }
+
+  /* SYNTHESIS SECTION */
+  .synthesis-section {
+    background: linear-gradient(180deg, var(--deep) 0%, #100005 100%);
+    text-align: center;
+  }
+
+  .synthesis-content {
+    max-width: 800px;
+    margin: 0 auto;
+  }
+
+  .synthesis-content p {
+    font-size: 1.15rem;
+    line-height: 1.95;
+    color: var(--ivory-dark);
+    margin-bottom: 2rem;
+  }
+
+  .synthesis-quote {
+    font-family: 'Tiro Devanagari Sanskrit', serif;
+    font-size: clamp(2rem, 6vw, 4rem);
+    color: var(--gold);
+    text-shadow: 0 0 40px rgba(212,160,23,0.4);
+    margin: 3rem 0;
+    opacity: 0.8;
+    letter-spacing: 0.2em;
+  }
+
+  /* FOOTER */
+  footer {
+    background: #080504;
+    border-top: 1px solid rgba(212,160,23,0.1);
+    padding: 3rem 2rem;
+    text-align: center;
+  }
+
+  .footer-symbol {
+    font-family: 'Tiro Devanagari Sanskrit', serif;
+    font-size: 2.5rem;
+    color: var(--gold);
+    opacity: 0.4;
+    margin-bottom: 1rem;
+  }
+
+  .footer-text {
+    font-size: 0.85rem;
+    color: rgba(245,237,216,0.3);
+    letter-spacing: 0.2em;
+  }
+
+  /* DECORATIVE BORDER */
+  .border-pattern {
+    width: 100%;
+    height: 3px;
+    background: repeating-linear-gradient(
+      90deg,
+      var(--gold) 0px, var(--gold) 8px,
+      transparent 8px, transparent 16px,
+      var(--saffron) 16px, var(--saffron) 20px,
+      transparent 20px, transparent 28px
+    );
+    opacity: 0.4;
+  }
+
+  /* SCROLL REVEAL */
+  .reveal {
+    opacity: 0;
+    transform: translateY(40px);
+    transition: opacity 0.8s ease, transform 0.8s ease;
+  }
+
+  .reveal.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* RESPONSIVE */
+  @media (max-width: 768px) {
+    .intro-grid,
+    .schools-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .schools-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .vs-divider { display: none; }
+
+    .school-card.shaivism,
+    .school-card.vedanta {
+      border-radius: 12px;
+      border: 1px solid rgba(212,160,23,0.1);
+    }
+
+    .conflict-item {
+      grid-template-columns: 1fr;
+    }
+
+    .conflict-side.left {
+      border-right: none;
+      border-bottom: 1px solid rgba(212,160,23,0.08);
+    }
+
+    .conflict-topic { grid-column: 1; }
+
+    nav { padding: 1rem 1.5rem; }
+    .nav-links { gap: 1.2rem; }
+    .nav-links a { font-size: 0.75rem; }
+  }
+</style>
+</head>
+<body>
+
+<canvas id="particles"></canvas>
+
+<nav>
+  <div class="nav-logo">॥ तत्त्वज्ञान ॥</div>
+  <ul class="nav-links">
+    <li><a href="#schools">The Schools</a></li>
+    <li><a href="#conflict">Core Conflicts</a></li>
+    <li><a href="#figures">Sages</a></li>
+    <li><a href="#texts">Sacred Texts</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-bg"></div>
+  <div class="om-symbol">ॐ</div>
+  <div class="hero-content">
+    <div class="sanskrit-top">॥ अद्वैत तत्त्व विमर्श ॥</div>
+    <h1 class="hero-title">
+      The Grand Dialogue
+      <span>of Indian Consciousness</span>
+    </h1>
+    <p class="hero-subtitle">Kashmir Shaivism & Advaita Vedanta — Two Visions of the Absolute</p>
+    <div class="divider-ornament">
+      <span class="divider-dot"></span>
+      <span class="divider-dot"></span>
+      <span class="divider-dot"></span>
+    </div>
+  </div>
+  <div class="scroll-hint">
+    Descend
+    <div class="scroll-arrow"></div>
+  </div>
+</section>
+
+<div class="border-pattern"></div>
+
+<!-- INTRO -->
+<section class="intro-section">
+  <div class="section-container">
+    <div class="intro-grid">
+      <div class="intro-text reveal">
+        <div class="section-label">The Foundation</div>
+        <h2 class="section-title">Two Paths to the <em>Absolute</em></h2>
+        <p>Among the greatest achievements of the human mind are two Indian philosophical systems that emerged from the same sacred soil — yet arrived at profoundly different conclusions about the nature of reality, consciousness, and liberation.</p>
+        <p>Advaita Vedanta, systematized by the brilliant Shankaracharya in the 8th century, and Kashmir Shaivism, reaching its peak in the tantric genius of Abhinavagupta in the 10th–11th centuries, both assert a non-dual absolute. But <em>how</em> they describe that absolute, and what it means for the world we experience, differs in ways that matter deeply.</p>
+        <div class="quote-block">
+          <p>"The universe is not an illusion to be renounced — it is Shiva dancing, recognizing itself through infinite eyes."</p>
+          <cite>— Kashmir Shaivism</cite>
+        </div>
+      </div>
+      <div class="lotus-diagram reveal">
+        <div class="lotus-ring"></div>
+        <div class="lotus-ring"></div>
+        <div class="lotus-ring"></div>
+        <div class="lotus-ring"></div>
+        <div class="lotus-center">ॐ</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="border-pattern"></div>
+
+<!-- SCHOOLS -->
+<section class="schools-section" id="schools">
+  <div class="section-container">
+    <div class="section-label" style="text-align:center">The Two Traditions</div>
+    <h2 class="section-title" style="text-align:center">Shaivism vs. <em>Vedanta</em></h2>
+
+    <div class="schools-grid reveal">
+      <div class="school-card shaivism">
+        <span class="school-symbol">शि</span>
+        <h3 class="school-name">Kashmir Shaivism</h3>
+        <div class="school-subtitle">Trika · Pratyabhijna · Spanda</div>
+        <p class="school-text">A tantric philosophical system that posits Shiva as the supreme, self-luminous consciousness — not an abstract void, but a dynamic, vibrating awareness that freely manifests the entire cosmos through its own Shakti. Reality is real. The world is Shiva's self-expression.</p>
+        <p class="school-text">Founded on the radical idea that you are already Shiva — not becoming, not aspiring, but <em>recognizing</em>. The practice is called Pratyabhijna: remembrance of what was never lost.</p>
+        <ul class="tenets-list">
+          <li><span class="tenet-marker">◈</span> Shiva = Pure Consciousness + Freedom (Svatantrya)</li>
+          <li><span class="tenet-marker">◈</span> The world is real — it is Shiva's Vibration (Spanda)</li>
+          <li><span class="tenet-marker">◈</span> 36 Tattvas — a rich ontological map of manifestation</li>
+          <li><span class="tenet-marker">◈</span> Liberation = Recognition (Pratyabhijna), not renunciation</li>
+          <li><span class="tenet-marker">◈</span> Aesthetics (Rasa) as a path to Samadhi — Abhinavagupta's unique genius</li>
+        </ul>
+      </div>
+
+      <div class="vs-divider">
+        <div class="vs-line"></div>
+        <div class="vs-text">versus</div>
+        <div class="vs-line"></div>
+      </div>
+
+      <div class="school-card vedanta">
+        <span class="school-symbol" style="color:var(--lotus)">वे</span>
+        <h3 class="school-name">Advaita Vedanta</h3>
+        <div class="school-subtitle">Upanishads · Brahmasutra · Gita</div>
+        <p class="school-text">Adi Shankaracharya's magisterial synthesis declares: Brahman alone is real. Brahman is pure, attributeless, unchanging consciousness. The individual self (Atman) and the world as we experience it arise from Maya — cosmic ignorance that superimposes multiplicity on unity.</p>
+        <p class="school-text">The path is Jnana — discriminative wisdom that peels away layer after layer of identification until what remains is the silent witness: Nirguna Brahman, beyond all qualities.</p>
+        <ul class="tenets-list">
+          <li><span class="tenet-marker" style="color:var(--lotus)">◈</span> Brahman = Sat-Chit-Ananda (Pure Being-Consciousness-Bliss)</li>
+          <li><span class="tenet-marker" style="color:var(--lotus)">◈</span> The world is Maya — neither real nor unreal (mithya)</li>
+          <li><span class="tenet-marker" style="color:var(--lotus)">◈</span> Atman = Brahman — the core equation of identity</li>
+          <li><span class="tenet-marker" style="color:var(--lotus)">◈</span> Liberation = Moksha through Jnana (knowledge, not ritual)</li>
+          <li><span class="tenet-marker" style="color:var(--lotus)">◈</span> Nirguna Brahman — the absolute has no attributes whatsoever</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="border-pattern"></div>
+
+<!-- CONFLICTS -->
+<section class="conflict-section" id="conflict">
+  <div class="section-container">
+    <div class="section-label" style="text-align:center">The Great Disagreements</div>
+    <h2 class="section-title" style="text-align:center">Core <em>Conflicts</em></h2>
+    <div class="conflict-intro reveal">
+      <p>Despite both traditions affirming non-duality, the differences between them are not superficial — they touch the deepest questions: Is the world real? Does God have freedom? What is consciousness? What does it mean to be liberated? Here are the fault lines.</p>
+    </div>
+
+    <div class="conflicts-list">
+
+      <div class="conflict-item reveal">
+        <div class="conflict-topic">
+          <span class="conflict-number">01</span>
+          <h3 class="conflict-topic-title">The Status of the World — Real or Illusion?</h3>
+        </div>
+        <div class="conflict-side left">
+          <div class="conflict-side-label">Kashmir Shaivism</div>
+          <p>The phenomenal world is absolutely real — it is a genuine manifestation of Shiva's creative freedom (Svatantrya). Shiva contracts itself into individual souls and the material world, not as illusion, but as an act of self-concealment and eventual self-revelation. To call the world "unreal" is to deny Shiva's own creative power.</p>
+        </div>
+        <div class="conflict-side right">
+          <div class="conflict-side-label">Advaita Vedanta</div>
+          <p>The world as we experience it is Mithya — neither real nor unreal in the absolute sense. It has empirical (vyavaharika) validity but no ultimate (paramarthika) reality. Only Brahman, the unchanging substratum, is ultimately real. The world is like a dream — vivid while it lasts, but not independently real.</p>
+        </div>
+      </div>
+
+      <div class="conflict-item reveal">
+        <div class="conflict-topic">
+          <span class="conflict-number">02</span>
+          <h3 class="conflict-topic-title">The Nature of the Absolute — Qualified or Unqualified?</h3>
+        </div>
+        <div class="conflict-side left">
+          <div class="conflict-side-label">Kashmir Shaivism</div>
+          <p>Shiva is not just awareness but self-aware, dynamic, free consciousness — a Saguna absolute that possesses five cosmic functions: creation, preservation, dissolution, concealment, and grace (Panchakritya). The absolute is not a featureless void but the fullness of all possibility. Anuttara — the supreme — includes and transcends all categories.</p>
+        </div>
+        <div class="conflict-side right">
+          <div class="conflict-side-label">Advaita Vedanta</div>
+          <p>Brahman at the ultimate level is Nirguna — without attributes, qualities, or characteristics whatsoever. Any description we give Brahman — even consciousness — is ultimately a concession to the limitations of language and the level of the seeker. The highest truth is silence. Saguna Brahman (God with qualities) is a lower, practical understanding for devotees.</p>
+        </div>
+      </div>
+
+      <div class="conflict-item reveal">
+        <div class="conflict-topic">
+          <span class="conflict-number">03</span>
+          <h3 class="conflict-topic-title">The Cause of Bondage — Maya or Anava Mala?</h3>
+        </div>
+        <div class="conflict-side left">
+          <div class="conflict-side-label">Kashmir Shaivism</div>
+          <p>Bondage arises from three Malas (impurities): Anava Mala (the sense of being a limited, incomplete self), Mayiya Mala (the sense of difference from other beings), and Karma Mala (the residue of action). These are not cosmic illusions but contracted states of Shiva's own consciousness — deliberately adopted for the play of self-concealment.</p>
+        </div>
+        <div class="conflict-side right">
+          <div class="conflict-side-label">Advaita Vedanta</div>
+          <p>Bondage is caused by Avidya (ignorance) and Maya — the inexplicable cosmic power that superimposes the unreal onto the real, causing the misidentification of Atman with body-mind. Maya is not a deliberate divine play; it is an error without a real cause, dissolved entirely upon liberation. Shankaracharya is deliberately agnostic on Maya's ultimate origin.</p>
+        </div>
+      </div>
+
+      <div class="conflict-item reveal">
+        <div class="conflict-topic">
+          <span class="conflict-number">04</span>
+          <h3 class="conflict-topic-title">Liberation — Merger or Recognition?</h3>
+        </div>
+        <div class="conflict-side left">
+          <div class="conflict-side-label">Kashmir Shaivism</div>
+          <p>Liberation (Mukti) is Pratyabhijna — recognition of what you already are. There is no merger because you were never separate. The liberated sage continues to experience the world but now as Shiva experiencing itself. Liberation does not end the world's reality; the liberated sage can still act, create, and even access extraordinary powers (Siddhis). The body and world remain; only the misidentification dissolves.</p>
+        </div>
+        <div class="conflict-side right">
+          <div class="conflict-side-label">Advaita Vedanta</div>
+          <p>Liberation is the dissolution of the apparent individual self back into the ocean of Brahman, like a river reaching the sea. The Jnani (liberated sage) sees the world but is no longer affected by it — the world continues as appearance, but the fundamental contraction of identifying as a separate self dissolves. Videhamukti (liberation at death) is the final dissolution of all individual form.</p>
+        </div>
+      </div>
+
+      <div class="conflict-item reveal">
+        <div class="conflict-topic">
+          <span class="conflict-number">05</span>
+          <h3 class="conflict-topic-title">The Role of Shakti & the Divine Feminine</h3>
+        </div>
+        <div class="conflict-side left">
+          <div class="conflict-side-label">Kashmir Shaivism</div>
+          <p>Shakti is inseparable from Shiva — not a secondary power but the very nature of Shiva's awareness. Shiva without Shakti is inert; Shakti without Shiva has no ground. The universe is born from their eternal, non-dual embrace. Tantric practice honors the feminine divine as a fundamental ontological reality, not as symbolic only. The body and sensory experience can be gateways to liberation.</p>
+        </div>
+        <div class="conflict-side right">
+          <div class="conflict-side-label">Advaita Vedanta</div>
+          <p>At the highest level of Advaita, Shakti and the Goddess belong to the domain of Saguna Brahman — the qualified absolute appropriate for devotional practice. For the Jnani, even the concept of Shakti dissolves into the attributeless Brahman. Shankaracharya himself was a devoted Shakta — but this is seen as a practical, not ultimate, dimension. The path to the highest is through discrimination, not through tantric engagement.</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<div class="border-pattern"></div>
+
+<!-- KEY FIGURES -->
+<section class="figures-section" id="figures">
+  <div class="section-container">
+    <div class="section-label">The Illuminated Ones</div>
+    <h2 class="section-title">Sages Who <em>Shaped</em> the Tradition</h2>
+
+    <div class="figures-grid">
+      <div class="figure-card reveal">
+        <div class="figure-era">c. 788 – 820 CE</div>
+        <div class="figure-name">Adi Shankaracharya</div>
+        <div class="figure-tradition">Advaita Vedanta</div>
+        <p class="figure-desc">The most towering figure in Indian philosophy. In a short life of 32 years, he systematized Advaita Vedanta, wrote commentaries on the Brahmasutras, Upanishads, and Bhagavad Gita, established four monastic centers across India, and debated philosophers across the subcontinent. His formulation of Maya and Nirguna Brahman remains unsurpassed in precision.</p>
+      </div>
+
+      <div class="figure-card reveal">
+        <div class="figure-era">c. 950 – 1016 CE</div>
+        <div class="figure-name">Abhinavagupta</div>
+        <div class="figure-tradition">Kashmir Shaivism</div>
+        <p class="figure-desc">Perhaps the most brilliant polymath in India's intellectual history. A master of philosophy, tantra, music, poetry, and aesthetics. His Tantraloka is encyclopedic. His theory of Rasa — that the experience of beauty is structurally identical to mystical experience — is a singular achievement. He systematized the Trika school with unmatched depth and lived in the Kashmir Valley surrounded by thousands of disciples.</p>
+      </div>
+
+      <div class="figure-card reveal">
+        <div class="figure-era">c. 900 – 950 CE</div>
+        <div class="figure-name">Utpaladeva</div>
+        <div class="figure-tradition">Kashmir Shaivism — Pratyabhijna</div>
+        <p class="figure-desc">Abhinavagupta's grand-teacher and the founder of the Pratyabhijna (Recognition) school. His Ishvara-Pratyabhijna-Karika is a masterpiece of philosophical reasoning — an attempt to prove the existence of the universal self through logic alone, rather than scriptural authority. He established the philosophical backbone that Abhinavagupta would expand.</p>
+      </div>
+
+      <div class="figure-card reveal">
+        <div class="figure-era">c. 820 – 900 CE</div>
+        <div class="figure-name">Vasugupta</div>
+        <div class="figure-tradition">Kashmir Shaivism — Spanda</div>
+        <p class="figure-desc">The founder of the Kashmir Shaivism tradition, to whom the Shiva Sutras were revealed — according to tradition, inscribed on a rock by Shiva himself. These 77 sutras became the foundation of the entire school. Vasugupta also authored or revealed the Spandakarika — the doctrine of the divine vibration underlying all of reality.</p>
+      </div>
+
+      <div class="figure-card reveal">
+        <div class="figure-era">c. 700 – 750 CE</div>
+        <div class="figure-name">Gaudapada</div>
+        <div class="figure-tradition">Advaita Vedanta — Pre-Shankara</div>
+        <p class="figure-desc">Shankaracharya's guru's guru. His Mandukya Karika is a radical text that uses Buddhist-style arguments to establish the absolute unreality of duality. His doctrine of Ajativada (no-creation) is perhaps the most extreme non-dualism ever articulated in any tradition — the universe was never created, nothing was ever born, all is already Brahman.</p>
+      </div>
+
+      <div class="figure-card reveal">
+        <div class="figure-era">c. 1268 – 1369 CE</div>
+        <div class="figure-name">Vidyaranya</div>
+        <div class="figure-tradition">Advaita Vedanta — Post-Shankara</div>
+        <p class="figure-desc">The great systematizer of post-Shankara Advaita. His Panchadashi is one of the finest introductory texts on Advaita Vedanta, laying out the path of discrimination with clarity and elegance. He also helped found the Vijayanagara Empire, showing the unusual intersection of philosophical and political power in medieval India.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="border-pattern"></div>
+
+<!-- SACRED TEXTS -->
+<section class="texts-section" id="texts">
+  <div class="section-container">
+    <div class="section-label">The Sacred Literature</div>
+    <h2 class="section-title">Texts That <em>Illuminate</em> the Path</h2>
+
+    <div class="texts-grid">
+      <div class="text-card reveal">
+        <div class="text-script">मा</div>
+        <div class="text-name">Mandukya Upanishad</div>
+        <div class="text-tradition">Advaita Vedanta</div>
+        <p class="text-desc">The shortest Upanishad — 12 verses — yet considered the most profound. Analyzes the four states of consciousness: waking (Jagrat), dream (Svapna), deep sleep (Sushupti), and the transcendent fourth state (Turiya). Gaudapada's commentary made this the cornerstone of Advaita.</p>
+      </div>
+
+      <div class="text-card reveal">
+        <div class="text-script">ब्र</div>
+        <div class="text-name">Brahmasutra Bhashya</div>
+        <div class="text-tradition">Advaita Vedanta</div>
+        <p class="text-desc">Shankaracharya's commentary on Badarayana's Brahmasutras — the most systematic exposition of Advaita Vedanta. A tour de force of Indian philosophical reasoning, dismantling rival schools (Samkhya, Buddhism, Vaisheshika) while establishing the supremacy of the non-dual Brahman.</p>
+      </div>
+
+      <div class="text-card reveal">
+        <div class="text-script">वि</div>
+        <div class="text-name">Vivekachudamani</div>
+        <div class="text-tradition">Advaita Vedanta</div>
+        <p class="text-desc">The "Crest-Jewel of Discrimination" — Shankaracharya's most accessible and beloved text. A poetic, accessible guide to the path of Jnana, exploring the nature of the self, the body, Maya, and the practice of discrimination. Still widely studied today as an introduction to Advaita.</p>
+      </div>
+
+      <div class="text-card reveal">
+        <div class="text-script">शि</div>
+        <div class="text-name">Shiva Sutras</div>
+        <div class="text-tradition">Kashmir Shaivism</div>
+        <p class="text-desc">The foundational text of Kashmir Shaivism, attributed to revelation by Shiva to Vasugupta. 77 aphoristic sutras organized into three sections (Shambhavopaya, Shaktopaya, Anavopaya), corresponding to three paths suited to different types of seekers. The very first sutra — "Chaitanyam Atma" (Consciousness is the Self) — encapsulates the entire tradition.</p>
+      </div>
+
+      <div class="text-card reveal">
+        <div class="text-script">त</div>
+        <div class="text-name">Tantraloka</div>
+        <div class="text-tradition">Kashmir Shaivism</div>
+        <p class="text-desc">Abhinavagupta's magnum opus — 37 chapters, over 5000 verses. An encyclopedic treatment of Trika philosophy, tantric ritual, meditation, cosmology, and aesthetics. One of the most ambitious and comprehensive philosophical works in the Sanskrit tradition. Largely inaccessible without a teacher, it rewards those who persevere.</p>
+      </div>
+
+      <div class="text-card reveal">
+        <div class="text-script">ई</div>
+        <div class="text-name">Ishvara Pratyabhijna Karika</div>
+        <div class="text-tradition">Kashmir Shaivism</div>
+        <p class="text-desc">Utpaladeva's masterwork of philosophical reasoning — an attempt to prove the existence of Shiva as the universal self through logical argument rather than mere scriptural citation. The text that established the Pratyabhijna (Recognition) school and became the basis for Abhinavagupta's later elaborations. Addresses perception, memory, causation, and the nature of the ego.</p>
+      </div>
+
+      <div class="text-card reveal">
+        <div class="text-script">स्प</div>
+        <div class="text-name">Spanda Karikas</div>
+        <div class="text-tradition">Kashmir Shaivism</div>
+        <p class="text-desc">The foundational text of the Spanda school within Kashmir Shaivism, revealing the pulsating, vibratory nature of reality. 52 verses that describe Spanda — the divine throb that is the innermost nature of all phenomena. Reality is not static being but dynamic, self-aware pulsation.</p>
+      </div>
+
+      <div class="text-card reveal">
+        <div class="text-script">पं</div>
+        <div class="text-name">Panchadashi</div>
+        <div class="text-tradition">Advaita Vedanta</div>
+        <p class="text-desc">Vidyaranya's 15-chapter systematic presentation of Advaita Vedanta — possibly the finest introductory text for serious students. Divided into three sections (lamps) dealing with discrimination of the self, bliss, and the Absolute, it is celebrated for its clarity, comprehensiveness, and philosophical rigor.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="border-pattern"></div>
+
+<!-- SYNTHESIS -->
+<section class="synthesis-section">
+  <div class="section-container">
+    <div class="synthesis-content reveal">
+      <div class="section-label">The Deeper Harmony</div>
+      <h2 class="section-title">Beyond <em>Conflict</em></h2>
+      <div class="synthesis-quote">अहं ब्रह्मास्मि</div>
+      <p>It would be a mistake to reduce these traditions to mere disagreements. Both Kashmir Shaivism and Advaita Vedanta are pointing at the same moon — the unreality of the separate self, the primacy of consciousness, and the possibility of liberation. Their conflicts are the conflicts of precision — two extraordinary intellectual traditions pressing as hard as possible on the deepest questions.</p>
+      <p>Shankaracharya dissolves the world to reveal the Absolute. Abhinavagupta reveals the Absolute within the world. Both dissolve the illusion of the separate self. Perhaps these are not contradictions but complementary movements of a single truth — the inward path and the outward path, ultimately meeting at the same point of recognition: <em>I am That.</em></p>
+      <div class="quote-block" style="text-align:left">
+        <p>"Whether one says the world is Brahman's self-expression or Brahman's dream — in both cases, the dreamer and the expression are not two. The seeker who realizes this needs no further philosophy."</p>
+        <cite>— Synthesis of traditions</cite>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="border-pattern"></div>
+
+<footer>
+  <div class="footer-symbol">ॐ</div>
+  <div class="footer-text">सर्वे भवन्तु सुखिनः · May all beings be at peace</div>
+  <br>
+  <div class="footer-text" style="margin-top:0.5rem; opacity:0.5">A presentation on the great dialogue of Indian philosophy</div>
+</footer>
+
+<script>
+// Particles
+const canvas = document.getElementById('particles');
+const ctx = canvas.getContext('2d');
+canvas.width = window.innerWidth;
+canvas.height = window.innerHeight;
+
+const particles = [];
+for (let i = 0; i < 80; i++) {
+  particles.push({
+    x: Math.random() * canvas.width,
+    y: Math.random() * canvas.height,
+    size: Math.random() * 1.5 + 0.5,
+    speedX: (Math.random() - 0.5) * 0.2,
+    speedY: -Math.random() * 0.3 - 0.1,
+    opacity: Math.random() * 0.4 + 0.1,
+    color: Math.random() > 0.5 ? '#D4A017' : '#E8651A'
+  });
+}
+
+function drawParticles() {
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
+  particles.forEach(p => {
+    ctx.beginPath();
+    ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
+    ctx.fillStyle = p.color;
+    ctx.globalAlpha = p.opacity;
+    ctx.fill();
+    p.x += p.speedX;
+    p.y += p.speedY;
+    if (p.y < -10) { p.y = canvas.height + 10; p.x = Math.random() * canvas.width; }
+    if (p.x < 0 || p.x > canvas.width) p.speedX *= -1;
+  });
+  ctx.globalAlpha = 1;
+  requestAnimationFrame(drawParticles);
+}
+drawParticles();
+
+window.addEventListener('resize', () => {
+  canvas.width = window.innerWidth;
+  canvas.height = window.innerHeight;
+});
+
+// Scroll reveal
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('visible');
+    }
+  });
+}, { threshold: 0.1 });
+
+document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+</script>
+</body>
+</html>
